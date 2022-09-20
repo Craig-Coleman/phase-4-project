@@ -1,11 +1,12 @@
 class PublishersController < ApplicationController
 
     def index 
-        render json: {'index'}
+        publishers = Publisher.all
+        render json: publishers
     end
 
     def create 
-        render json: {'create'}
+        render json: { create: 'create'}
     end
     
 end
