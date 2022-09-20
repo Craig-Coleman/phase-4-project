@@ -34,7 +34,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     private
 
     def book_params 
-        params.permit(:id, :series, :issue, :year_of_publication, :user_id, :publisher_id)
+        params.permit(:id, :series, :issue, :year_of_publication, :user_id, :publisher_id, :cover_art_url)
     end
 
     def render_unprocessable_entity_response(invalid)
