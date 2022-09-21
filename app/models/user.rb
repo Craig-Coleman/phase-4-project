@@ -3,4 +3,6 @@ class User < ApplicationRecord
     has_many :publishers, through: :comicbooks 
 
     validates :username, { presence: true, uniqueness: true, length: { in: 6..20 } } 
+
+    has_secure_password 
 end
