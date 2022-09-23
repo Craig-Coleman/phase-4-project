@@ -6,7 +6,7 @@ function NavBar() {
         <div id="navbar">
             <NavLink
                 className="navlink" 
-                to="/charsheet"
+                to="/collection"
                 exact
                 activeStyle={{
                     background: "darkblue",
@@ -16,7 +16,7 @@ function NavBar() {
             </NavLink>
             <NavLink
                 className="navlink" 
-                to="/info"
+                to="/add_issue"
                 exact
                 activeStyle={{
                     background: "darkblue",
@@ -26,7 +26,7 @@ function NavBar() {
             </NavLink>
             <NavLink
                 className="navlink"
-                to="/inventory"
+                to="/add_publisher"
                 exact
                 activeStyle={{
                     background: "darkblue",
