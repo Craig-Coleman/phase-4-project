@@ -7,30 +7,18 @@ function NavBar() {
             <NavLink
                 className="navlink" 
                 to="/collection"
-                exact
-                activeStyle={{
-                    background: "darkblue",
-                }}
             >
                 My Collection
             </NavLink>
             <NavLink
                 className="navlink" 
                 to="/add_issue"
-                exact
-                activeStyle={{
-                    background: "darkblue",
-                }}
             >
                 Add New Issue
             </NavLink>
             <NavLink
                 className="navlink"
                 to="/add_publisher"
-                exact
-                activeStyle={{
-                    background: "darkblue",
-                }}
             >
                 Add New Publisher
             </NavLink>
