@@ -5,6 +5,7 @@ import Header from './Header';
 import Login from './Login';
 import Collection from './Collection';
 import NewBookForm from './NewBookForm';
+import SignUp from './SignUp';
 import NewPublisherForm from './NewPublisherForm';
 
 
@@ -29,12 +30,21 @@ function App() {
       body: JSON.stringify(userInfo),
     })
       .then(res => res.json())
-      .then(res => console.log(res))
-  }
+      .then(res => console.log(res));
+  };
+
+  function signUp(newUserInfo) {
+    console.log(newUserInfo);
+  };
 
   if (!user) {
     return (
-      <Login login={ login } ></Login>
+      <div>
+        <Routes>
+          <Route path="/" element={ <Login login={ login } /> }/>
+          <Route path="/sign_up" element={ <SignUp signUp={ signUp} /> }/>
+        </Routes>
+      </div>
     )
   } else {
   return (
@@ -42,8 +52,8 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/collection" element={<Collection/>}/>
-        <Route path="add_issue" element={<NewBookForm/>}/>
-        <Route path="add_publisher" element={<NewPublisherForm/>}/>
+        <Route path="/add_issue" element={<NewBookForm/>}/>
+        <Route path="/add_publisher" element={<NewPublisherForm/>}/>
       </Routes>
 
     </div>

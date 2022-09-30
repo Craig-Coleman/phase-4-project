@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Login( { login }) {
 
@@ -20,13 +21,15 @@ function Login( { login }) {
             password
         };
         login(userInfo);
+        setUsername('');
+        setPassword('');
     };
 
     return(
-        <div id="createUserForm" >
+        <div>
             <h1>Login</h1>
             <h3>Enter Username and Password</h3>
-            <form className="form" onSubmit={(event) => handleLogin(event)} >
+            <form id="loginForm" onSubmit={(event) => handleLogin(event)} >
                 <input
                     type="text"
                     placeholder="Username"
@@ -41,6 +44,13 @@ function Login( { login }) {
                 ></input>
                 <input type="submit"></input>
             </form>
+            <h1>Or</h1>
+            <NavLink
+                className="navlink"
+                to="/sign_up"
+            >
+                Sign Up
+            </NavLink>
         </div>
     );
 };
