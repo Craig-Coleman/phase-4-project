@@ -6,20 +6,8 @@ function SignUp( { signUp }) {
     const [newPassword, setNewPassword] = useState(null);
     const [confirmNewPassword, setConfirmNewPassword] = useState(null);
 
-    function updateNewUsername(newUsername) {
-        setNewUsername(newUsername);
-    };
-
-    function updateNewPassword(newPassword) {
-        setNewPassword(newPassword);
-    };
-
-    function updateConfirmNewPassword(confirmNewPassword) {
-        setConfirmNewPassword(confirmNewPassword);
-    };
-
     function handleSignUp(event) {
-        event.PreventDefault();
+        event.preventDefault();
         const newUserInfo = {
             username: newUsername,
             password: newPassword,
@@ -33,23 +21,24 @@ function SignUp( { signUp }) {
 
     return(
         <div>
+            <h2>Please enter your desired Username and Password</h2>
             <form id="signUpForm" onSubmit={(event) => handleSignUp(event)} >
                 <input
                     type="text"
                     placeholder="New Username"
-                    onChange={(event) => updateNewUsername(event.target.value)}
+                    onChange={(event) => setNewUsername(event.target.value)}
                     value={newUsername}
                 ></input>
                 <input 
-                    type="text"
+                    type="password"
                     placeholder="New Password"
-                    onChange={(event) => updateNewPassword(event.target.value)}
+                    onChange={(event) => setNewPassword(event.target.value)}
                     value={newPassword}
                 ></input>
                                 <input 
-                    type="text"
+                    type="password"
                     placeholder="Confirm New Password"
-                    onChange={(event) => updateConfirmNewPassword(event.target.value)}
+                    onChange={(event) => setConfirmNewPassword(event.target.value)}
                     value={confirmNewPassword}
                 ></input>
                 <input type="submit"></input>

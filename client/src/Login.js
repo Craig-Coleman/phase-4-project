@@ -6,14 +6,6 @@ function Login( { login }) {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
 
-    function updateUsername(username) {
-        setUsername(username)
-    }
-
-    function updatePassword(password) {
-        setPassword(password)
-    }
-
     function handleLogin(event) {
         event.preventDefault();
         const userInfo = {
@@ -33,13 +25,13 @@ function Login( { login }) {
                 <input
                     type="text"
                     placeholder="Username"
-                    onChange={(event) => updateUsername(event.target.value)}
+                    onChange={(event) => setUsername(event.target.value)}
                     value={username}
                 ></input>
                 <input 
-                    type="text"
+                    type="password"
                     placeholder="Password"
-                    onChange={(event) => updatePassword(event.target.value)}
+                    onChange={(event) => setPassword(event.target.value)}
                     value={password}
                 ></input>
                 <input type="submit"></input>

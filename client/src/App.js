@@ -19,7 +19,7 @@ function App() {
         response.json().then((user) => setUser(user));
       };
     });
-  });
+  }, []);
 
   function login(userInfo) {
     fetch("/login", {
