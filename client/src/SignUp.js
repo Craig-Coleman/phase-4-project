@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
 
-function SignUp( { signUp }) {
+function SignUp({ setUser }) {
 
-    const [newUsername, setNewUsername] = useState(null);
-    const [newPassword, setNewPassword] = useState(null);
-    const [confirmNewPassword, setConfirmNewPassword] = useState(null);
+    const [newUsername, setNewUsername] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [errors, setErrors] = useState([]);
+
+    function signUp(newUserInfo) {
+        fetch("/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUserInfo),
+        })
+        .then(res => {
+          if(res.ok) {
+            res.json().then((user) => setUser(user))
+          } else {
+            res.json().then((data) => setErrors(data.errors))
+          }
+        })
+      };
+
+      const errorMessage = errors.map((error) => {
+        return(
+            <h4>{error}</h4>
+        );
+      });
 
     function handleSignUp(event) {
         event.preventDefault();
@@ -21,7 +45,7 @@ function SignUp( { signUp }) {
 
     return(
         <div>
-            <h2>Please enter your desired Username and Password</h2>
+            <h3>Please enter your desired Username and Password</h3>
             <form id="signUpForm" onSubmit={(event) => handleSignUp(event)} >
                 <input
                     type="text"
@@ -41,8 +65,9 @@ function SignUp( { signUp }) {
                     onChange={(event) => setConfirmNewPassword(event.target.value)}
                     value={confirmNewPassword}
                 ></input>
-                <input type="submit"></input>
+                <input type="submit" value="Sign Up"></input>
             </form>
+            <h4 className='error'>{errorMessage}</h4>
         </div>
     );
 };

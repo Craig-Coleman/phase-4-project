@@ -21,35 +21,17 @@ function App() {
     });
   }, []);
 
-  function login(userInfo) {
-    fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
-  };
-
-  function signUp(newUserInfo) {
-    console.log(newUserInfo);
-  };
-
-  if (!user) {
+  if (!user) 
     return (
       <div>
-        <Routes>
-          <Route path="/" element={ <Login login={ login } /> }/>
-          <Route path="/sign_up" element={ <SignUp signUp={ signUp} /> }/>
-        </Routes>
+        <Login setUser={ setUser } />
+        <SignUp setUser={ setUser } />
       </div>
     )
-  } else {
+
   return (
     <div className="App">
-      <Header></Header>
+      <Header setUser={setUser} ></Header>
       <Routes>
         <Route path="/collection" element={<Collection/>}/>
         <Route path="/add_issue" element={<NewBookForm/>}/>
@@ -58,7 +40,7 @@ function App() {
 
     </div>
   );
-  };
+
 };
 
 export default App;

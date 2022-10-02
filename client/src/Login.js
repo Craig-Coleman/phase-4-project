@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
-function Login( { login }) {
+function Login({ setUser }) {
 
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState([]);
+
+    function login(userInfo) {
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => {
+            if (res.ok) {
+                res.json().then((user) => setUser(user));
+            } else {
+                res.json().then((err) => setError(err.error));          
+            }
+          });
+      };
 
     function handleLogin(event) {
         event.preventDefault();
@@ -34,15 +51,11 @@ function Login( { login }) {
                     onChange={(event) => setPassword(event.target.value)}
                     value={password}
                 ></input>
-                <input type="submit"></input>
+                <input type="submit" value="Login"></input>
             </form>
-            <h1>Or</h1>
-            <NavLink
-                className="navlink"
-                to="/sign_up"
-            >
-                Sign Up
-            </NavLink>
+            <h4 className="error">{error}</h4>
+            <h1>OR</h1>
+            <h1>Sign Up</h1>
         </div>
     );
 };
