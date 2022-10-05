@@ -59,7 +59,7 @@ function SignUp({ setUser }) {
                     onChange={(event) => setNewPassword(event.target.value)}
                     value={newPassword}
                 ></input>
-                                <input 
+                <input 
                     type="password"
                     placeholder="Confirm New Password"
                     onChange={(event) => setConfirmNewPassword(event.target.value)}

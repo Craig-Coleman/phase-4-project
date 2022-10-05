@@ -9,7 +9,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def create 
-        publisher = Publisher.create(publisher_params)
+        publisher = Publisher.create!(publisher_params)
         render json: publisher, status: :created 
     end
 

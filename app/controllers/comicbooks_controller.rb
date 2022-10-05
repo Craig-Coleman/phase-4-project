@@ -4,8 +4,9 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        books = Comicbook.all  
-        render json: books 
+        user = User.find(session[:user_id]) 
+        books = user.comicbooks.all 
+        render json: books, include: :publisher
     end
 
     def show 
@@ -14,7 +15,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def create
-        user = User.find(1) 
+        user = User.find(session[:user_id]) 
         new_book = user.comicbooks.create!(book_params)
         render json: new_book, status: :created  
     end

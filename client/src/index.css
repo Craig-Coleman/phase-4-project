@@ -35,3 +35,13 @@ code {
   color: red;
   font-style: italic;
 }
+
+.confirmation {
+  color: green;
+  font-style: italic;
+}
+
+.img {
+  margin: auto;
+  display: block;
+}

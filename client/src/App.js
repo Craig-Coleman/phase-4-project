@@ -12,19 +12,21 @@ import NewPublisherForm from './NewPublisherForm';
 function App() {
 
   const [user, setUser] = useState(null);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setUser(user));
       };
     });
   }, []);
 
+
   if (!user) 
     return (
       <div>
-        <Login setUser={ setUser } />
+        <Login setUser={ setUser } setBooks={setBooks} />
         <SignUp setUser={ setUser } />
       </div>
     )
@@ -33,7 +35,7 @@ function App() {
     <div className="App">
       <Header setUser={setUser} ></Header>
       <Routes>
-        <Route path="/collection" element={<Collection/>}/>
+        <Route path="/collection" element={<Collection books={books} />}/>
         <Route path="/add_issue" element={<NewBookForm/>}/>
         <Route path="/add_publisher" element={<NewPublisherForm/>}/>
       </Routes>

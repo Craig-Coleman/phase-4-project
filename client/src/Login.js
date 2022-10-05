@@ -6,22 +6,6 @@ function Login({ setUser }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState([]);
 
-    function login(userInfo) {
-        fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userInfo),
-        })
-          .then(res => {
-            if (res.ok) {
-                res.json().then((user) => setUser(user));
-            } else {
-                res.json().then((err) => setError(err.error));          
-            }
-          });
-      };
 
     function handleLogin(event) {
         event.preventDefault();
@@ -29,7 +13,20 @@ function Login({ setUser }) {
             username,
             password
         };
-        login(userInfo);
+        fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then(res => {
+              if (res.ok) {
+                  res.json().then((user) => setUser(user));
+              } else {
+                  res.json().then((err) => setError(err.error));          
+              }
+            });
         setUsername('');
         setPassword('');
     };
