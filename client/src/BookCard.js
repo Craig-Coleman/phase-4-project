@@ -18,6 +18,6 @@ function BookCard( { book, deleteBook }) {
             <button type="button" onClick={handleDelete}>Remove Book from Collection</button>
         </div>
     );
-};
+}
 
 export default BookCard;
