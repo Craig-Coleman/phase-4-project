@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
 function Header( { setUser } ) {
+
+    const navigate = useNavigate();
 
     function handleLogout() {
         fetch("/logout", {
@@ -10,7 +13,8 @@ function Header( { setUser } ) {
             if (res.ok) {
             setUser(null);
             };
-        });   
+        });  
+        navigate("/") 
     };
 
     return(

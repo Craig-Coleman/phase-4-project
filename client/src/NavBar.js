@@ -6,7 +6,7 @@ function NavBar() {
         <div id="navbar">
             <NavLink
                 className="navlink" 
-                to="/collection"
+                to="/"
             >
                 My Collection
             </NavLink>

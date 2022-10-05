@@ -35,7 +35,7 @@ function App() {
     <div className="App">
       <Header setUser={setUser} ></Header>
       <Routes>
-        <Route path="/collection" element={<Collection books={books} />}/>
+        <Route path="/" element={<Collection books={books} />}/>
         <Route path="/add_issue" element={<NewBookForm/>}/>
         <Route path="/add_publisher" element={<NewPublisherForm/>}/>
       </Routes>
