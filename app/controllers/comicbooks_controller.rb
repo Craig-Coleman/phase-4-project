@@ -4,7 +4,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        user = User.find(session[:user_id]) 
+        user = User.find(session[:user_id])
         books = user.comicbooks.all 
         render json: books, include: :publisher
     end

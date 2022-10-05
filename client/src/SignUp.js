@@ -6,6 +6,7 @@ function SignUp({ setUser }) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const [confirmSignUp, setConfirmSignUp] = useState('')
 
     function signUp(newUserInfo) {
         fetch("/users", {
@@ -17,16 +18,16 @@ function SignUp({ setUser }) {
         })
         .then(res => {
           if(res.ok) {
-            res.json().then((user) => setUser(user))
+            res.json().then(setConfirmSignUp('Account Created!  Please Login Above with Your Newly Created Credentials!'))
           } else {
-            res.json().then((data) => setErrors(data.errors))
+            res.json().then((err) => setErrors(err.errors))
           }
-        })
+        });
       };
 
       const errorMessage = errors.map((error) => {
         return(
-            <h4>{error}</h4>
+            <h4 className="error">{error}</h4>
         );
       });
 
@@ -67,7 +68,8 @@ function SignUp({ setUser }) {
                 ></input>
                 <input type="submit" value="Sign Up"></input>
             </form>
-            <h4 className='error'>{errorMessage}</h4>
+            {errorMessage}
+            <h4 className="confirmation" >{confirmSignUp}</h4>
         </div>
     );
 };

@@ -13,23 +13,27 @@ function Login({ setUser }) {
             username,
             password
         };
-        fetch("/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userInfo),
-          })
-            .then(res => {
-              if (res.ok) {
-                  res.json().then((user) => setUser(user));
-              } else {
-                  res.json().then((err) => setError(err.error));          
-              }
-            });
+        login(userInfo);
         setUsername('');
         setPassword('');
     };
+
+    function login(userInfo) {
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => {
+            if (res.ok) {
+                res.json().then((user) => setUser(user));
+            } else {
+                res.json().then((err) => setError(err.error));          
+            }
+          });
+      }
 
     return(
         <div>
@@ -50,10 +54,11 @@ function Login({ setUser }) {
                 ></input>
                 <input type="submit" value="Login"></input>
             </form>
-            <h4 className="error">{error}</h4>
+            <h4 className="error" >{error}</h4>
             <h1>OR</h1>
             <h1>Sign Up</h1>
         </div>
+
     );
 };
 
