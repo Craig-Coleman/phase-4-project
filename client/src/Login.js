@@ -33,7 +33,7 @@ function Login({ setUser }) {
                 res.json().then((err) => setError(err.error));          
             }
           });
-      }
+      };
 
     return(
         <div>
