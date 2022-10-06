@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function NewPublisherForm() {
+function NewPublisherForm({ publishers, setPublishers }) {
 
     const [name, setName] = useState('');
     const [year, setYear] = useState('');
@@ -21,7 +21,7 @@ function NewPublisherForm() {
             body: JSON.stringify(newPublisher)
         }).then((res) => {
             if (res.ok) {
-                res.json().then((pub) => console.log(pub));
+                res.json().then((pub) => setPublishers([...publishers, pub]));
                 setConfirmation('New Publisher Added!');
             } else {
                 res.json().then((err) => setErrors(err.errors));

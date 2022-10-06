@@ -5,7 +5,6 @@ import Header from './Header';
 import Login from './Login';
 import Collection from './Collection';
 import NewBookForm from './NewBookForm';
-import SignUp from './SignUp';
 import NewPublisherForm from './NewPublisherForm';
 
 
@@ -47,7 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Collection setBooks={setBooks} books={books} />}/>
         <Route path="/add_issue" element={<NewBookForm setBooks={setBooks} books={books} publishers={publishers}/>}/>
-        <Route path="/add_publisher" element={<NewPublisherForm/>}/>
+        <Route path="/add_publisher" element={<NewPublisherForm setPublishers={setPublishers} publishers={publishers} />}/>
       </Routes>
 
     </div>
