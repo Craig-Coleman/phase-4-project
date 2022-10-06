@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SignUp from './SignUp';
 
 function Login({ setUser }) {
 
@@ -58,7 +57,6 @@ function Login({ setUser }) {
             <h4 className="error" >{error}</h4>
             <h1>OR</h1>
             <h1>Sign Up</h1>
-            <SignUp login={login} ></SignUp>
         </div>
 
     );

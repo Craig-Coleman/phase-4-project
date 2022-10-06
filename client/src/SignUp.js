@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SignUp({ login }) {
+function SignUp({ setUser }) {
 
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -17,7 +17,7 @@ function SignUp({ login }) {
         })
         .then(res => {
           if(res.ok) {
-            res.json().then((user) => login(user));
+            res.json().then((user) => setUser(user));
           } else {
             res.json().then((err) => setErrors(err.errors));
           }
