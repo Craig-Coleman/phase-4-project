@@ -10,8 +10,6 @@ function NewBookForm({ setBooks, books, publishers }) {
     const [addConfirmation, setAddConfirmation] = useState('');
     const [errors, setErrors] = useState([]);
 
-    console.log(errors.filter((err) => console.log(err)))
-
     function handleAddBook(event) {
         event.preventDefault();
         const newBook = {
@@ -31,7 +29,7 @@ function NewBookForm({ setBooks, books, publishers }) {
         .then((res) => {
             if (res.ok) {
                 res.json().then((book) => setBooks([...books, book]));
-                setAddConfirmation('New Comicbook Added!')
+                setAddConfirmation('New Comicbook Added!');
             } else {
                 res.json().then((err) => setErrors(err.errors));          
             };

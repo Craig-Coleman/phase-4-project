@@ -14,7 +14,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [publishers, setPublishers] = useState([]);
 
-
+  
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
@@ -31,7 +31,8 @@ function App() {
         res.json().then((publishers) => setPublishers(publishers));
       };
     });
-  }, [])
+  }, []);
+
 
   if (!user)  {
     return (
@@ -40,19 +41,18 @@ function App() {
       </div>
     )
   } else { 
-  return (
-    <div className="App">
-      <Header setUser={setUser} ></Header>
-      <Routes>
-        <Route path="/" element={<Collection setBooks={setBooks} books={books} />}/>
-        <Route path="/add_issue" element={<NewBookForm setBooks={setBooks} books={books} publishers={publishers}/>}/>
-        <Route path="/add_publisher" element={<NewPublisherForm setPublishers={setPublishers} publishers={publishers} />}/>
-      </Routes>
+    return (
+      <div className="App">
+        <Header setUser={setUser} ></Header>
+        <Routes>
+          <Route path="/" element={<Collection setBooks={setBooks} books={books} />}/>
+          <Route path="/add_issue" element={<NewBookForm setBooks={setBooks} books={books} publishers={publishers}/>}/>
+          <Route path="/add_publisher" element={<NewPublisherForm setPublishers={setPublishers} publishers={publishers} />}/>
+        </Routes>
 
-    </div>
-  );
+      </div>
+    );
   };
-
 };
 
 export default App;
