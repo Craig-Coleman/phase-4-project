@@ -21,7 +21,7 @@ function App() {
         res.json().then((user) => setUser(user));
       };
     });
-  }, []);
+  }, [])
 
   if (!user) 
     return (
