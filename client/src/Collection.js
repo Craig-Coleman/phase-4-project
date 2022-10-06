@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BookCard from './BookCard';
 
-function Collection() {
+function Collection({ books, setBooks }) {
 
-    const [books, setBooks] = useState([]);
-
-    useEffect(() => {
-        fetch("/comicbooks").then((res) => {
-          if (res.ok) {
-            res.json().then((books) => setBooks(books));
-          };
-        });
-      }, []);
 
       function deleteBook(id) {
         fetch(`/comicbooks/${id}`, {

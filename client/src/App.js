@@ -13,6 +13,7 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [books, setBooks] = useState([]);
+  const [publishers, setPublishers] = useState([]);
 
 
   useEffect(() => {
@@ -21,27 +22,37 @@ function App() {
         res.json().then((user) => setUser(user));
       };
     });
+    fetch("/comicbooks").then((res) => {
+      if (res.ok) {
+        res.json().then((books) => setBooks(books));
+      };
+    });
+    fetch("/publishers").then((res) => {
+      if (res.ok) {
+        res.json().then((publishers) => setPublishers(publishers));
+      };
+    });
   }, [])
 
-  if (!user) 
+  if (!user)  {
     return (
       <div>
-        <Login setUser={ setUser } setBooks={setBooks} />
-        <SignUp setUser={ setUser } />
+        <Login setUser={ setUser } />
       </div>
     )
-
+  } else { 
   return (
     <div className="App">
       <Header setUser={setUser} ></Header>
       <Routes>
-        <Route path="/" element={<Collection books={books} />}/>
-        <Route path="/add_issue" element={<NewBookForm/>}/>
+        <Route path="/" element={<Collection setBooks={setBooks} books={books} />}/>
+        <Route path="/add_issue" element={<NewBookForm setBooks={setBooks} books={books} publishers={publishers}/>}/>
         <Route path="/add_publisher" element={<NewPublisherForm/>}/>
       </Routes>
 
     </div>
-  )
+  );
+  };
 
 };
 

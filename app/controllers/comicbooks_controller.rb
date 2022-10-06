@@ -5,7 +5,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         user = User.find(session[:user_id])
-        books = user.comicbooks.all 
+        books = user.comicbooks
         render json: books, include: :publisher
     end
 

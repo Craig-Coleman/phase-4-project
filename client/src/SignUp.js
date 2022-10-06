@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-function SignUp({ setUser }) {
+function SignUp({ login }) {
 
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    const [confirmSignUp, setConfirmSignUp] = useState('')
 
     function signUp(newUserInfo) {
         fetch("/users", {
@@ -18,11 +17,11 @@ function SignUp({ setUser }) {
         })
         .then(res => {
           if(res.ok) {
-            res.json().then(setConfirmSignUp('Account Created!  Please Login Above with Your Newly Created Credentials!'))
+            res.json().then((user) => login(user));
           } else {
-            res.json().then((err) => setErrors(err.errors))
+            res.json().then((err) => setErrors(err.errors));
           }
-        });
+        })
       };
 
       const errorMessage = errors.map((error) => {
@@ -69,7 +68,6 @@ function SignUp({ setUser }) {
                 <input type="submit" value="Sign Up"></input>
             </form>
             {errorMessage}
-            <h4 className="confirmation" >{confirmSignUp}</h4>
         </div>
     );
 };

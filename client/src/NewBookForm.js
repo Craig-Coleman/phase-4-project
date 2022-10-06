@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-function NewBookForm() {
+function NewBookForm({ setBooks, books, publishers }) {
 
     const [series, setSeries] = useState('');
     const [issue, setIssue] = useState('');
     const [pubYear, setPubYear] = useState('');
     const [coverUrl, setCoverUrl] = useState('');
-    const [publishers, setPublishers] = useState([]);
     const [currentPublisher, setCurrentPublisher] = useState({});
     const [addConfirmation, setAddConfirmation] = useState('');
     const [errors, setErrors] = useState([]);
 
     console.log(errors.filter((err) => console.log(err)))
-
-    useEffect(() => {
-        fetch("/publishers").then((res) => {
-            if (res.ok) {
-                res.json().then((publishers) => setPublishers(publishers));
-            };
-        });
-    }, []);
 
     function handleAddBook(event) {
         event.preventDefault();
@@ -39,7 +30,7 @@ function NewBookForm() {
         })
         .then((res) => {
             if (res.ok) {
-                res.json().then((book) => console.log(book));
+                res.json().then((book) => setBooks([...books, book]));
                 setAddConfirmation('New Comicbook Added!')
             } else {
                 res.json().then((err) => setErrors(err.errors));          
