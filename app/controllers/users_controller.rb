@@ -16,7 +16,10 @@ def show
 
     def create 
         user = User.create!(user_params)
-        render json: user, status: :created 
+        if user
+            session[:user_id] = user.id 
+            render json: user, status: :created
+        end 
     end
 
     private  

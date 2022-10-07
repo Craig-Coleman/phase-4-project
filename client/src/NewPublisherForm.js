@@ -23,11 +23,20 @@ function NewPublisherForm({ publishers, setPublishers }) {
             if (res.ok) {
                 res.json().then((pub) => setPublishers([...publishers, pub]));
                 setConfirmation('New Publisher Added!');
+                setErrors([]);
             } else {
                 res.json().then((err) => setErrors(err.errors));
             };
         });
     };
+
+    const errorList = errors.map((error, index) => {
+        return(
+            <h3 key={index}>{error}</h3>
+        );
+    });
+
+    
 
     return(
         <div>
@@ -48,7 +57,7 @@ function NewPublisherForm({ publishers, setPublishers }) {
                 <input type="submit" value="Add New Publisher" ></input>
             </form>
             <h4 className="confirmation">{confirmation}</h4>
-            <h4 className="error">{errors}</h4>
+            <h4 className="error">{errorList}</h4>
         </div>
     );
 };

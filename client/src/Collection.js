@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import BookCard from './BookCard';
 
-function Collection({ books, setBooks, setPublishers }) {
+function Collection({ books, setBooks }) {
 
-
-  useEffect(() => {
-    fetch("/comicbooks").then((res) => {
-      if (res.ok) {
-        res.json().then((books) => setBooks(books));
-      };
-    });
-  }, [])
+    useEffect(() => {
+      fetch("/comicbooks").then((res) => {
+        if (res.ok) {
+          res.json().then((books) => setBooks(books));
+        };
+      });
+    }, []);
 
     function deleteBook(id) {
        fetch(`/comicbooks/${id}`, {

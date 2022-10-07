@@ -30,6 +30,7 @@ function NewBookForm({ setBooks, books, publishers }) {
             if (res.ok) {
                 res.json().then((book) => setBooks([...books, book]));
                 setAddConfirmation('New Comicbook Added!');
+                setErrors([]);
             } else {
                 res.json().then((err) => setErrors(err.errors));          
             };

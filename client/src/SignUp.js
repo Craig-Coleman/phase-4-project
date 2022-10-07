@@ -24,9 +24,9 @@ function SignUp({ setUser }) {
         })
       };
 
-      const errorMessage = errors.map((error) => {
+      const errorMessage = errors.map((error, index) => {
         return(
-            <h4 className="error">{error}</h4>
+            <h4 key={index} className="error">{error} </h4>
         );
       });
 

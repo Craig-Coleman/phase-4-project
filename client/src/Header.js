@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 
-function Header( { setUser } ) {
+function Header( { setUser, setBooks } ) {
 
     const navigate = useNavigate();
 
@@ -12,9 +12,10 @@ function Header( { setUser } ) {
         }).then((res) => {
             if (res.ok) {
             setUser(null);
+            setBooks([]);
             };
         });  
-        navigate("/") 
+        navigate("/")
     };
 
     return(
