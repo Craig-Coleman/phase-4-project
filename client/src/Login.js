@@ -31,7 +31,7 @@ function Login({ setUser }) {
                 res.json().then((user) => setUser(user));
             } else {
                 res.json().then((err) => setError(err.error));          
-            }
+            };
           });
       };
 
@@ -58,7 +58,6 @@ function Login({ setUser }) {
             <h1>OR</h1>
             <h1>Sign Up</h1>
         </div>
-
     );
 };
 

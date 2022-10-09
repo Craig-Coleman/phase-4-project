@@ -21,11 +21,6 @@ function App() {
           res.json().then((user) => setUser(user));
         };
       });
-    fetch("/publishers").then((res) => {
-      if (res.ok) {
-        res.json().then((publishers) => setPublishers(publishers));
-      };
-    });
   }, []);
 
   if (!user) 
@@ -40,7 +35,7 @@ function App() {
       <div className="App">
         <Header setUser={setUser} setBooks={setBooks}></Header>
         <Routes>
-          <Route path="/" element={<Collection setBooks={setBooks} books={books} />}/>
+          <Route path="/" element={<Collection setBooks={setBooks} books={books} publishers={publishers} setPublishers={setPublishers} />}/>
           <Route path="/add_issue" element={<NewBookForm setBooks={setBooks} books={books} publishers={publishers}/>}/>
           <Route path="/add_publisher" element={<NewPublisherForm setPublishers={setPublishers} publishers={publishers} />}/>
         </Routes>

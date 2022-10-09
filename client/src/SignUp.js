@@ -41,7 +41,7 @@ function SignUp({ setUser }) {
         setNewUsername("");
         setNewPassword("");
         setConfirmNewPassword("");
-    }
+    };
 
     return(
         <div>

@@ -15,7 +15,7 @@ function Header( { setUser, setBooks } ) {
             setBooks([]);
             };
         });  
-        navigate("/")
+        navigate("/");
     };
 
     return(
